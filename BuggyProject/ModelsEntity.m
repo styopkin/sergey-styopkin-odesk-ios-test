@@ -14,4 +14,13 @@
 @dynamic modelId;
 @dynamic owner;
 
+- (NSString *)description {
+    return [NSString stringWithFormat: @"%@; %@", self.modelName, self.owner];
+}
+
+- (NSComparisonResult) compare:(ModelsEntity *)otherEntity {
+    NSComparisonResult result = [self.modelName compare:otherEntity.modelName];
+    return (result == NSOrderedSame ? [self.owner compare:otherEntity.owner] : result);
+}
+
 @end

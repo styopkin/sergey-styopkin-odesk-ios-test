@@ -40,7 +40,7 @@
 }
 
 - (IBAction)secondBug:(id)sender {
-	NSInteger x = 123;
+	__block NSInteger x = 123;
 	void (^printX)() = ^() {
 		NSLog(@"%i", x);
 	};
@@ -56,7 +56,7 @@
 
 - (IBAction)fourthBug:(id)sender {
 	static NSInteger count = 1;
-	if (count>1) {
+	if (count>0) {
 		[CoreDataHelpers cleanData];
 	}
 	
@@ -68,9 +68,15 @@
 }
 
 - (IBAction)fifthBug:(id)sender {
+    [CoreDataHelpers cleanData];
 	[CoreDataHelpers fillUnsortedData];
+
 	NSArray *models = [CoreDataHelpers arrayForFetchRequestWithName:@"AllModels"];
-	NSLog(@"%@", models);
+    NSArray *sortedModels = [models sortedArrayUsingComparator:^NSComparisonResult(id left, id right) {
+        return [left compare:right];
+    }];
+    
+	NSLog(@"%@", sortedModels);
 }
 
 @end
