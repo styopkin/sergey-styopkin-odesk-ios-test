@@ -13,4 +13,12 @@
 @dynamic ownerName;
 @dynamic models;
 
+- (NSString *)description {
+    return [self.ownerName copy];
+}
+
+- (NSComparisonResult) compare:(OwnerEntity *)otherEntity {
+    return [self.ownerName compare:otherEntity.ownerName];
+}
+
 @end

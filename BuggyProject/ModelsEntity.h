@@ -15,4 +15,6 @@
 @property (nonatomic, retain) NSNumber * modelId;
 @property (nonatomic, retain) OwnerEntity *owner;
 
+- (NSComparisonResult) compare:(ModelsEntity *)otherEntity;
+
 @end

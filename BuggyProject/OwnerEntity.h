@@ -22,4 +22,6 @@
 - (void)addModels:(NSSet *)values;
 - (void)removeModels:(NSSet *)values;
 
+- (NSComparisonResult) compare:(OwnerEntity *)otherEntity;
+
 @end
